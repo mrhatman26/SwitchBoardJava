@@ -21,6 +21,7 @@ public class SwitchBoard extends ApplicationAdapter {
 		batch.begin();
 		batch.draw(img, 0, 0);
 		batch.end();
+		Controls.keyboardControls();
 	}
 	
 	@Override
