@@ -47,6 +47,12 @@ public class PlugManager {
         }
     }
 
+    public void plugMiscDraw(){
+        for (Plug plug: plugs){
+            plug.drawLine();
+        }
+    }
+
     public void updatePlugs(Batch batch, Vector3 mousePos){
         for (Plug plug: plugs){
             plug.update(batch, mousePos);

@@ -38,6 +38,7 @@ public class SwitchBoard extends ApplicationAdapter {
 		batch.draw(backgroundSprite, 0, 0);
 		plugController.updatePlugs(batch, mousePos);
 		batch.end();
+		plugController.plugMiscDraw();
 		camera.update();
 		Controls.keyboardControls();
 		Controls.mouseControls(mousePos, plugController);

@@ -2,13 +2,16 @@ package com.mygdx.switchboard;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
 public class Plug {
     private Rectangle plugRect;
     private Texture plugNormal;
     private Texture plugInserted;
+    private ShapeRenderer shapeRenderer;
     private boolean draggable;
     private boolean dragging;
     private int startX;
@@ -25,6 +28,7 @@ public class Plug {
         this.dragging = false;
         this.startX = startX;
         this.startY = startY;
+        this.shapeRenderer = new ShapeRenderer();
     }
 
     public boolean getDragging(){
@@ -39,6 +43,15 @@ public class Plug {
         this.dragging = newDragging;
     }
 
+    public void drawLine(){
+        if (plugRect.x != startX || plugRect.y != startY) {
+            shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+            shapeRenderer.setColor(0, 0, 0, 1);
+            shapeRenderer.rectLine(new Vector2(startX + plugRect.width / 2, startY + 4), new Vector2(plugRect.x + plugRect.width / 2, plugRect.y), 5);
+            shapeRenderer.end();
+        }
+    }
+
     public void update(Batch batch, Vector3 mousePos){
         batch.draw(plugNormal, plugRect.x, plugRect.y);
         if (dragging){
@@ -50,5 +63,6 @@ public class Plug {
     public void dispose(){
         plugNormal.dispose();
         plugInserted.dispose();
+        shapeRenderer.dispose();
     }
 }
