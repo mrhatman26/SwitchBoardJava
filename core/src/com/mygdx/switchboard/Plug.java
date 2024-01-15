@@ -1,5 +1,6 @@
 package com.mygdx.switchboard;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -57,6 +58,20 @@ public class Plug {
         if (dragging){
             plugRect.x = mousePos.x - plugRect.width / 2;
             plugRect.y = mousePos.y - plugRect.height / 2;
+        }
+        else{
+            if (plugRect.x > startX){
+                plugRect.x -= 100 * Gdx.graphics.getDeltaTime();
+            }
+            if (plugRect.x < startY){
+                plugRect.x += 100 * Gdx.graphics.getDeltaTime();
+            }
+            if (plugRect.y > startY){
+                plugRect.y -= 100 * Gdx.graphics.getDeltaTime();
+            }
+            if (plugRect.y < startY){
+                plugRect.y += 100 * Gdx.graphics.getDeltaTime();
+            }
         }
     }
 
