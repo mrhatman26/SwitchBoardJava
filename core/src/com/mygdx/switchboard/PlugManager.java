@@ -1,6 +1,7 @@
 package com.mygdx.switchboard;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 
 public class PlugManager {
@@ -33,9 +34,22 @@ public class PlugManager {
         }
     }
 
-    public void updatePlugs(Batch batch){
+    public void checkClick(Vector3 mousePos){
         for (Plug plug: plugs){
-            plug.update(batch);
+            if (plug.getDragging()){
+                plug.setDragging(false);
+            }
+            else {
+                if (plug.getPlugRect().contains(mousePos.x, mousePos.y)) {
+                    plug.setDragging(true);
+                }
+            }
+        }
+    }
+
+    public void updatePlugs(Batch batch, Vector3 mousePos){
+        for (Plug plug: plugs){
+            plug.update(batch, mousePos);
         }
     }
 
